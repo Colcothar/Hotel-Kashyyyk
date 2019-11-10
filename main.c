@@ -158,44 +158,8 @@ int detailFill(){
     return 0;
 }
 
-int main()
-{
-    arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);
-    
-    while(loop==1){
-        switch(getIntInput("\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\nChoose an option:")){
-            
-            case 1:
-                if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){
-                    roomSelect();
-                    detailFill();
-                
-                    printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
-                    printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
-                }
-                else{
-                    printf("The hotel is currently full.\n");
-                }
-                break;
-                
-            case 2:
-                break;
-            
-            case 3:
-                break;
-            
-            case 4:
-                break;    
-                
-            default:
-                printf("Please enter a valid option.");
-                break;
-                
-        }
-    }   
-    return(0);
-} 
-
+  
+/**************************************************************************************************************************************
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -269,4 +233,314 @@ for(i=1;i<5;i++){
         printf("Sorry, we couldn't find your booking ID");}     /*Printed if the booking isn't recognised*/
 }
 }
+
+
+/****************************************************************************************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <ctype.h>
+
+void checkOut();
+double boardCost(int room);
+double newspaperCost(int room);
+double AgeDiscount(int room);
+double roomCost(int room);
+
+int booking = 0;
+char BookingID1[32], surname1[16], forename1[16];
+int DOB1[3], adults1 = 0, children1 = 0, boardtype1 = 0, lengthofstay1 = 0, newspaper1 = 0;
+
+char BookingID2[32], surname2[16], forename2[16];
+int DOB2[3], adults2 = 0, children2 = 0, boardtype2 = 0, lengthofstay2 = 0, newspaper2 = 0;
+
+char BookingID3[32], surname3[16], forename3[16];
+int DOB3[3], adults3 = 0, children3 = 0, boardtype3 = 0, lengthofstay3 = 0, newspaper3 = 0;
+
+char BookingID4[32], surname4[16], forename4[16];
+int DOB4[3], adults4 = 0, children4 = 0, boardtype4 = 0, lengthofstay4 = 0, newspaper4 = 0;
+
+char BookingID[32];
+char BookingID1[32];
+char BookingID2[32];
+char BookingID3[32];
+char BookingID4[32];
+
+int rooms[4] = {0,0,0,0};
+int available_table[3] = {0,0,0};
+int available_table1[3] = {0,0,0};
+
+
+void checkOut() {
+    char room[32];
+    double boardTotal;
+    double newspaperTotal;
+    double discount;
+    double totalRoomCost;
+    double total;
+    double discountCalc;
+
+    printf("\n==================================Check Out===============================\nThank you for staying at the Kashyyk Hotel.\nPlease enter your BookingID\nEnter:");
+    fflush(stdin);
+    gets(room);
+    //printf("%s", room);
+    if(strcmp(room,BookingID1) == 0){
+        boardTotal = boardCost(1);
+        newspaperTotal = newspaperCost(1);
+        discount = AgeDiscount(1);
+        totalRoomCost = roomCost(1);
+        if(discount == 0){
+            discountCalc = 1;
+        }
+        else{
+            discountCalc = 1.1;
+        }
+        total = (totalRoomCost + boardTotal + newspaperTotal)/(discountCalc);
+        printf("\n======================\n\tBill\t\n======================\nRoom cost:\t%.2f\nBoard Cost:\t%.2f\nNewsPaper:\t%.2f\nDiscount:\t%.0f%%\n======================\nTotal:\t\t%.2f\n======================\n",totalRoomCost, boardTotal,newspaperTotal,discount,total);
+        rooms[0] = 0;
+
+    }
+    else if(strcmp(room,BookingID2) == 0){
+        boardTotal = boardCost(2);
+        newspaperTotal = newspaperCost(2);
+        discount = AgeDiscount(2);
+        totalRoomCost = roomCost(2);
+        if(discount == 0){
+            discountCalc = 1;
+        }
+        else{
+            discountCalc = 1.1;
+        }
+        total = (totalRoomCost + boardTotal + newspaperTotal)/(discountCalc);
+        printf("\n======================\n\tBill\t\n======================\nRoom cost:\t%.2f\nBoard Cost:\t%.2f\nNewsPaper:\t%.2f\nDiscount:\t%.0f%%\n======================\nTotal:\t\t%.2f\n======================\n",totalRoomCost, boardTotal,newspaperTotal,discount,total);
+        rooms[1] = 0;
+
+    }
+    else if(strcmp(room,BookingID3) == 0){
+        boardTotal = boardCost(3);
+        newspaperTotal = newspaperCost(3);
+        discount = AgeDiscount(3);
+        totalRoomCost = roomCost(3);
+        if(discount == 0){
+            discountCalc = 1;
+        }
+        else{
+            discountCalc = 1.1;
+        }
+        total = (totalRoomCost + boardTotal + newspaperTotal)/(discountCalc);
+        printf("\n======================\n\tBill\t\n======================\nRoom cost:\t%.2f\nBoard Cost:\t%.2f\nNewsPaper:\t%.2f\nDiscount:\t%.0f%%\n======================\nTotal:\t\t%.2f\n======================\n",totalRoomCost, boardTotal,newspaperTotal,discount,total);
+        rooms[2] = 0;
+
+    }
+    else if(strcmp(room,BookingID4) == 0){
+        boardTotal = boardCost(4);
+        newspaperTotal = newspaperCost(4);
+        discount = AgeDiscount(4);
+        totalRoomCost = roomCost(4);
+        if(discount == 0){
+            discountCalc = 1;
+        }
+        else{
+            discountCalc = 1.1;
+        }
+        total = (totalRoomCost + boardTotal + newspaperTotal)/(discountCalc);
+        printf("\n======================\n\tBill\t\n======================\nRoom cost:\t%.2f\nBoard Cost:\t%.2f\nNewsPaper:\t%.2f\nDiscount:\t%.0f%%\n======================\nTotal:\t\t%.2f\n======================\n",totalRoomCost, boardTotal,newspaperTotal,discount,total);
+        rooms[3] = 0;
+    }
+    else{
+        printf("\nThat's not a valid input\n\n Returning to main manu...\n");
+    }
+}
+
+double roomCost(int room){
+    if(room == 1){
+        double totalcost = lengthofstay1 * 100;
+        return  totalcost;
+    }
+
+    else if(room == 2){
+        double totalcost = lengthofstay2 * 85;
+        return  totalcost;
+    }
+    else if(room == 3){
+        double totalcost = lengthofstay3 * 75;
+        return  totalcost;
+    }
+    else if(room == 4){
+        double totalcost = lengthofstay4 * 50;
+        return  totalcost;
+    }
+}
+
+double AgeDiscount(int room){
+    int cost = 0;
+    if(room == 1){
+        if(DOB1[2] <1983){
+            cost = 10;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if(room == 2){
+        if(DOB2[2] <1983){
+            cost = 10;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if(room == 3){
+        if(DOB3[2] <1983){
+            cost = 10;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if(room == 4){
+        if(DOB4[2] <1983){
+            cost = 10;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+}
+
+double newspaperCost(int room){
+    double cost = 0;
+    if (room == 1){
+        if(newspaper1 == 1) {
+            cost = 5.5;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if (room == 2){
+        if(newspaper2 == 1) {
+            cost = 5.5;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if (room == 3){
+        if(newspaper3 == 1) {
+            cost = 5.5;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+    else if (room == 4){
+        if(newspaper4 == 1) {
+            cost = 5.5;
+            return cost;
+        }
+        else{
+            return cost;
+        }
+    }
+}
+
+double boardCost(int room) {
+    double totalBoardCost;
+    int boardPrice;
+    if (room == 1) {
+        if (boardtype1 == 1) {
+            boardPrice = 20;
+        } else if (boardtype1 == 2) {
+            boardPrice = 15;
+        } else {
+            boardPrice = 5;
+        }
+        totalBoardCost = ((adults1 * boardPrice) + (0.5 * children1 * boardPrice)) * lengthofstay1;
+        return totalBoardCost;
+    } else if (room == 2) {
+        if (boardtype2 == 1) {
+            boardPrice = 20;
+        } else if (boardtype2 == 2) {
+            boardPrice = 15;
+        } else {
+            boardPrice = 5;
+        }
+        totalBoardCost = ((adults2 * boardPrice) + (0.5 * children2 * boardPrice)) * lengthofstay2;
+        return totalBoardCost;
+    } else if (room == 3) {
+        if (boardtype3 == 1) {
+            boardPrice = 20;
+        } else if (boardtype3 == 2) {
+            boardPrice = 15;
+        } else {
+            boardPrice = 5;
+        }
+        totalBoardCost = ((adults3 * boardPrice) + (0.5 * children3 * boardPrice)) * lengthofstay3;
+        return totalBoardCost;
+    } else if (room == 4) {
+        if (boardtype4 == 1) {
+            boardPrice = 20;
+        } else if (boardtype4 == 2) {
+            boardPrice = 15;
+        } else {
+            boardPrice = 5;
+        }
+        totalBoardCost = ((adults4 * boardPrice) + (0.5 * children4 * boardPrice)) * lengthofstay4;
+        return totalBoardCost;
+    }
+}
+
+
+
+/**************************************************************************************************************************
+
+
+int main()
+{
+    arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);
     
+    while(loop==1){
+        switch(getIntInput("\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\nChoose an option:")){
+            
+            case 1:
+                if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){
+                    roomSelect();
+                    detailFill();
+                
+                    printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
+                    printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
+                }
+                else{
+                    printf("The hotel is currently full.\n");
+                }
+                break;
+                
+            case 2:
+                break;
+            
+            case 3:
+                break;
+            
+            case 4:
+                break;    
+                
+            default:
+                printf("Please enter a valid option.");
+                break;
+                
+        }
+    }   
+    return(0);
+} 
+
+
+ 
