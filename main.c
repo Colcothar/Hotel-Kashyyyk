@@ -1,10 +1,8 @@
 /******************************************************************************
-
 Welcome to GDB Online.
 GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
 C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
 Code, Compile, Run and Debug online from anywhere in world.
-
 *******************************************************************************/
 #include <stdio.h>
 #include <time.h>
@@ -13,9 +11,9 @@ Code, Compile, Run and Debug online from anywhere in world.
 
 
 //**** GLOBAL VARIABLE DECLERATION ****
-int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}}; 
+int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
 char roomStr[5][4][100];
-int loop =1, arrayCollums=0; 
+int loop =1, arrayCollums=0;
 int inputRm=0, r=0;
 
 //*************************************
@@ -72,14 +70,14 @@ int roomSelect(){
 
 int detailFill(){
     char buffer;
-    
+
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand()%999;      // Returns a pseudo-random integer between 0 and RAND_MAX.
-    
+
     printf("\nEnter firstname : ");
     fflush(stdin);
     scanf("%s", roomStr[inputRm][0]);    // Read and store
-    
+
     printf("Enter surname: ");
     fflush(stdin);
     scanf("%s",  roomStr[inputRm][1]);    // Read and store
@@ -109,7 +107,7 @@ int detailFill(){
     roomInt[inputRm][2]=input1+input2;
     roomInt[inputRm][4]=input1;
     roomInt[inputRm][3]=input2;
-    
+
     error =0;
     printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");
     while (error != 1 || input1<0 || input1>3) {
@@ -122,10 +120,10 @@ int detailFill(){
         else if(input1<0 || input1>3 ){
             printf("Please choose a valid option.\n");
         }
-        
+
     }
     roomInt[inputRm][7]=(input1-1);
-    
+
     error=0;
     while (error != 1 || input1<0) {
         printf("Enter the length of your stay: ");
@@ -139,7 +137,7 @@ int detailFill(){
         }
     }
     roomInt[inputRm][5]=input1;
-    
+
     error =0;
     printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");
     while (error != 1 || input1<0 || input1>2) {
@@ -154,9 +152,41 @@ int detailFill(){
         }
     }
     roomInt[inputRm][6]=input1;
-    
+
     return 0;
 }
+
+
+int totalCostOfRoom(){
+    printf("\nThe total of the room is £%d",roomInt[inputRm][5]*roomInt[inputRm][1]);
+}
+
+int totalCostOfBoard(){
+    printf("\nThe coast of all the party's board is %d",roomInt[inputRm][7]*roomInt[inputRm][2]);
+}
+
+int newspaper() {
+    if (roomInt[inputRm][6] == 1) {
+        printf("\nThe price of your daily newspapers is %d", roomInt[inputRm][5] * 5.50);
+    } else if (roomInt[inputRm][6] == 0) {
+        printf("\nYou didnt have a daily newspaper so know payment is needed.");
+    }
+}
+
+int Total() {
+    if (roomInt[inputRm][6] == 1) {
+        printf("\nSo the total cost of your stay %s %s is %d", roomStr[inputRm][0], roomStr[inputRm][1],
+               (roomInt[inputRm][5] * roomInt[inputRm][1]) + (roomInt[inputRm][7] * roomInt[inputRm][2]) +
+               (roomInt[inputRm][5] * 5.50));
+    } else if (roomInt[inputRm][6] == 0) {
+        printf("\nSo the total cost of your stay %s %s is %d", roomStr[inputRm][0], roomStr[inputRm][1],
+               (roomInt[inputRm][5] * roomInt[inputRm][1]) + (roomInt[inputRm][7] * roomInt[inputRm][2]));
+    }
+}
+
+
+
+
 
 int main()
 {
@@ -168,15 +198,15 @@ int main()
     int Nine=0;
     int y=0;int x=0;int i=0;
     arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);
-    
+
     while(loop==1){
         switch(getIntInput("\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\nChoose an option:")){
-            
+
             case 1:
                 if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){
                     roomSelect();
                     detailFill();
-                
+
                     printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
                     printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
                 }
@@ -184,82 +214,94 @@ int main()
                     printf("The hotel is currently full.\n");
                 }
                 break;
-                
-            case 2:
-            
-            
-    
-                
 
+            case 2:
+                
                 printf("******Booking dinner******\n");
                 printf("\nEnter the last four digits of your booking ID:\n");
                 scanf("%d", &LastDigits);
 
-                for(i=1;i<5;i++){   
+                for(i=1;i<5;i++){
                     if(LastDigits == roomInt[i][8]){            /*Checks if the booking ID is assioated with a room*/
-        
+
                         if(roomInt[i][7] == 0 || roomInt[i][7] == 1){    /*Checks if the user is full or half board*/
-            
+
                             printf("Hello %s %s\n",roomStr[i][0],roomStr[i][1]);
-            
+
                             for(y=0;y<1;y++){
                                 for(x=0;x<3;x++){
                                     if(TablesAvailable[y][x] == 0){
                                         Seven++;}}}
                             printf("There are %d tables available at 7\n", Seven);      /*Checks how any tables there are available*/
-            
+
                             for(y=1;y<2;y++){
                                 for(x=0;x<3;x++){
                                     if(TablesAvailable[y][x] == 0){
                                         Nine++;}}}
                             printf("There are %d tables available at 9\n", Nine);
-                    
+
                             printf("\nChoose a time, 9pm or 7pm\n");
                             scanf("%d", &ChoosenTime);
-                                if(ChoosenTime == 7){
-                                    TimeIndex = 0;}              /*Determines the time the guest wants to eat*/
-                                else if(ChoosenTime == 9){
-                                    TimeIndex = 1;}
-                                else{
-                                    printf("Invalid time");}
-                
+                            if(ChoosenTime == 7){
+                                TimeIndex = 0;}              /*Determines the time the guest wants to eat*/
+                            else if(ChoosenTime == 9){
+                                TimeIndex = 1;}
+                            else{
+                                printf("Invalid time");}
+
                             if(TablesAvailable[TimeIndex][0] == 0){
                                 printf("You have booked the table Endor for %dpm for %d people",ChoosenTime, roomInt[i][2]);
                                 TablesAvailable[TimeIndex][0] = 1;
                                 break;}
-            
+
                             else if(TablesAvailable[TimeIndex][1] == 0){
-                                printf("You have booked the table Naboo for %dpm for %d people",ChoosenTime, roomInt[i][2]);    /*Changes the table name*/ 
+                                printf("You have booked the table Naboo for %dpm for %d people",ChoosenTime, roomInt[i][2]);    /*Changes the table name*/
                                 TablesAvailable[TimeIndex][1] = 1;
                                 break;}
-            
+
                             else if(TablesAvailable[TimeIndex][2] == 0){
                                 printf("You have booked the table Tatoonie for %dpm for %d people",ChoosenTime, roomInt[i][2]);
                                 TablesAvailable[TimeIndex][2] = 1;}
                         }
-                        else{ 
+                        else{
                             printf("Sorry, you aren't booked as half or full board");}         /*Printed if the person is B&B*/
                     }
                     else{
                         printf("Sorry, we couldn't find your booking ID");}     /*Printed if the booking isn't recognised*/
-                    }
-              
-            
-            
+                }
+
+
+
                 break;
-            
+
             case 3:
-                break;
-            
+                printf("******Booking dinner******\n");
+                printf("\nEnter the last four digits of your booking ID:\n");
+                scanf("%d", &LastDigits);
+
+                for (i = 1; i < 5; i++) {
+                    if (LastDigits == roomInt[i][8]) {
+
+                        if ((roomInt[1][0] + roomInt[2][0] + roomInt[3][0] + roomInt[4][0]) != 4) {
+                            totalCostOfRoom();
+                            totalCostOfBoard();
+                            newspaper();
+                            Total();
+                        }
+                    } else {
+                        printf("Your Booking ID doesn't show up.\n");
+                    }
+                    break;
+                }
+
             case 4:
-                break;    
-                
+                break;
+
             default:
                 printf("Please enter a valid option.");
                 break;
-                
+
         }
-    }   
+    }
     return(0);
-} 
-    
+}
