@@ -195,4 +195,78 @@ int main()
     }   
     return(0);
 } 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int main(){
+int y=0;int x=0;int i=0;
+int roomInt[5][9] = { {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,1234}, {1,85,4,0,0,0,0,0,3451}, {0,75,0,0,0,0,0,0,0},{0,50,0,0,0,0,0,0,0}};
+char roomStr[5][4][256] = {{"NULL","NULL","NULL","NULL"},
+                         {"John","Smith","0102003","Smith1234"},
+                         {"Joe","Blogs","01081993","Bloggs3451"},
+                         {"NULL","NULL","NULL","NULL"},
+                         {"NULL","NULL","NULL","NULL"}};
+int LastDigits=0;
+int TablesAvailable[2][5]= {{0,0,0,0},{0,0,0,0}};
+int TimeIndex=0;
+int ChoosenTime=0;
+int Seven=0;
+int Nine=0;
+
+printf("******Booking dinner******\n");
+printf("\nEnter the last four digits of your booking ID:\n");
+scanf("%d", &LastDigits);
+
+for(i=1;i<5;i++){   
+    if(LastDigits == roomInt[i][8]){            /*Checks if the booking ID is assioated with a room*/
+        
+        if(roomInt[i][7] == 0 || roomInt[i][7] == 1){    /*Checks if the user is full or half board*/
+            
+            printf("Hello %s %s\n",roomStr[i][0],roomStr[i][1]);
+            
+            for(y=0;y<1;y++){
+                for(x=0;x<3;x++){
+                    if(TablesAvailable[y][x] == 0){
+                        Seven++;}}}
+            printf("There are %d tables available at 7\n", Seven);      /*Checks how any tables there are available*/
+            
+            for(y=1;y<2;y++){
+                for(x=0;x<3;x++){
+                    if(TablesAvailable[y][x] == 0){
+                        Nine++;}}}
+            printf("There are %d tables available at 9\n", Nine);
+                    
+            printf("\nChoose a time, 9pm or 7pm\n");
+            scanf("%d", &ChoosenTime);
+                if(ChoosenTime == 7){
+                    TimeIndex = 0;}              /*Determines the time the guest wants to eat*/
+                else if(ChoosenTime == 9){
+                    TimeIndex = 1;}
+                else{
+                    printf("Invalid time");}
+                
+            if(TablesAvailable[TimeIndex][0] == 0){
+                printf("You have booked the table Endor for %dpm for %d people",ChoosenTime, roomInt[i][2]);
+                TablesAvailable[TimeIndex][0] = 1;
+                break;}
+            
+            else if(TablesAvailable[TimeIndex][1] == 0){
+                printf("You have booked the table Naboo for %dpm for %d people",ChoosenTime, roomInt[i][2]);    /*Changes the table name*/ 
+                TablesAvailable[TimeIndex][1] = 1;
+                break;}
+            
+            else if(TablesAvailable[TimeIndex][2] == 0){
+                printf("You have booked the table Tatoonie for %dpm for %d people",ChoosenTime, roomInt[i][2]);
+                TablesAvailable[TimeIndex][2] = 1;}
+        }
+        else{ 
+            printf("Sorry, you aren't booked as half or full board");}         /*Printed if the person is B&B*/
+    }
+    else{
+        printf("Sorry, we couldn't find your booking ID");}     /*Printed if the booking isn't recognised*/
+}
+}
     
