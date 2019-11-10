@@ -158,28 +158,28 @@ int detailFill(){
 
 
 int totalCostOfRoom(){
-    printf("\nThe total of the room is £%d",roomInt[inputRm][5]*roomInt[inputRm][1]);
+    printf("\n**********The total of the room is £%d**********\n",roomInt[inputRm][5]*roomInt[inputRm][1]);
 }
 
 int totalCostOfBoard(){
-    printf("\nThe coast of all the party's board is %d",roomInt[inputRm][7]*roomInt[inputRm][2]);
+    printf("\n**********The coast of all the party's board is %d**********\n",roomInt[inputRm][7]*roomInt[inputRm][2]);
 }
 
 int newspaper() {
     if (roomInt[inputRm][6] == 1) {
-        printf("\nThe price of your daily newspapers is %d", roomInt[inputRm][5] * 5.50);
+        printf("\n**********The price of your daily newspapers is %d**********\n", roomInt[inputRm][5] * 5.50);
     } else if (roomInt[inputRm][6] == 0) {
-        printf("\nYou didnt have a daily newspaper so know payment is needed.");
+        printf("\n**********You didnt have a daily newspaper so know payment is needed.**********\n");
     }
 }
 
 int Total() {
     if (roomInt[inputRm][6] == 1) {
-        printf("\nSo the total cost of your stay %s %s is %d", roomStr[inputRm][0], roomStr[inputRm][1],
+        printf("\n**********So the total cost of your stay %s %s is : %d**********\n", roomStr[inputRm][0], roomStr[inputRm][1],
                (roomInt[inputRm][5] * roomInt[inputRm][1]) + (roomInt[inputRm][7] * roomInt[inputRm][2]) +
                (roomInt[inputRm][5] * 5.50));
     } else if (roomInt[inputRm][6] == 0) {
-        printf("\nSo the total cost of your stay %s %s is %d", roomStr[inputRm][0], roomStr[inputRm][1],
+        printf("\n**********So the total cost of your stay %s %s is %d**********\n", roomStr[inputRm][0], roomStr[inputRm][1],
                (roomInt[inputRm][5] * roomInt[inputRm][1]) + (roomInt[inputRm][7] * roomInt[inputRm][2]));
     }
 }
@@ -275,8 +275,8 @@ int main()
                 break;
 
             case 3:
-                printf("******Booking dinner******\n");
-                printf("\nEnter the last four digits of your booking ID:\n");
+                printf("******Checkout******\n");
+                printf("\n**********Hello and wellcome to the best reception in the world.**********\n**********Please,Enter the last four digits of your booking ID:**********\n");
                 scanf("%d", &LastDigits);
 
                 for (i = 1; i < 5; i++) {
