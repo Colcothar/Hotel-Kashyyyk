@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-    #include <time.h>
+#include <time.h>
 
 
 //**** GLOBAL VARIABLE DECLERATION ****
@@ -91,12 +91,12 @@ int detailFill(){
 
 
     int error=0,input1=1,input2;
-    while (error != 1 || input1<0 || input2<0 || (input1+input2)>4) {
+    while (error != 2 || input1<0 || input2<0 || (input1+input2)>4) {
         printf("Enter the number of adults and children seperated by commas (max of 4 total per room): ");
         fflush(stdin);
         error = scanf("%d,%d", &input1,&input2);
         printf("%d %d %d", input1,input2,input1+input2);
-        if(error!=1){
+        if(error!=2){
             printf("Input is not an integer! please try again.\n");
         }
         else if(input1<0 || input2<0){
