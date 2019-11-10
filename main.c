@@ -1,3 +1,11 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -5,7 +13,7 @@
 
 
 //**** GLOBAL VARIABLE DECLERATION ****
-int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {1,85,0,0,0,0,0,0,0}, {0,75,0,0,0,0,0,0,0},{0,50,4,3,1,3,1,2,0}}; 
+int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}}; 
 char roomStr[5][4][100];
 int loop =1, arrayCollums=0; 
 int inputRm=0, r=0;
@@ -63,39 +71,31 @@ int roomSelect(){
 }
 
 int detailFill(){
-
+    char buffer;
+    
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand()%999;      // Returns a pseudo-random integer between 0 and RAND_MAX.
-
     
     printf("\nEnter firstname : ");
     fflush(stdin);
     scanf("%s", roomStr[inputRm][0]);    // Read and store
-
     
     printf("Enter surname: ");
     fflush(stdin);
     scanf("%s",  roomStr[inputRm][1]);    // Read and store
 
-    
     printf("Enter date of birth: ");
     fflush(stdin);
     scanf("%s",  roomStr[inputRm][2]);    // Read and store
-    
-//    sprintf(str, "%d", r);
-  
- //   roomStr[inputRm][3]=str
-    
+
     roomInt[inputRm][8] = (r+1000);
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);
-
 
     int error=0,input1=1,input2;
     while (error != 2 || input1<0 || input2<0 || (input1+input2)>4) {
         printf("Enter the number of adults and children seperated by commas (max of 4 total per room): ");
         fflush(stdin);
         error = scanf("%d,%d", &input1,&input2);
-        printf("%d %d %d", input1,input2,input1+input2);
         if(error!=2){
             printf("Input is not an integer! please try again.\n");
         }
@@ -109,37 +109,90 @@ int detailFill(){
     roomInt[inputRm][2]=input1+input2;
     roomInt[inputRm][4]=input1;
     roomInt[inputRm][3]=input2;
+    
+    error =0;
+    printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");
+    while (error != 1 || input1<0 || input1>3) {
+        printf("Enter your board type: ");
+        fflush(stdin);
+        error = scanf("%d", &input1);
+        if(error!=1){
+            printf("Input is not an integer! please try again.\n");
+        }
+        else if(input1<0 || input1>3 ){
+            printf("Please choose a valid option.\n");
+        }
         
+    }
+    roomInt[inputRm][7]=(input1-1);
+    
+    error=0;
+    while (error != 1 || input1<0) {
+        printf("Enter the length of your stay: ");
+        fflush(stdin);
+        error = scanf("%d", &input1);
+        if(error!=1){
+            printf("Input is not an integer! please try again.\n");
+        }
+        else if(input1<0 ){
+            printf("Number is negative! Please try again.\n");
+        }
+    }
+    roomInt[inputRm][5]=input1;
+    
+    error =0;
+    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");
+    while (error != 1 || input1<0 || input1>2) {
+        printf("Enter your newspaper choice: ");
+        fflush(stdin);
+        error = scanf("%d", &input1);
+        if(error!=1){
+            printf("Input is not an integer! please try again.\n");
+        }
+        else if(input1<0 || input1>3 ){
+            printf("Please choose a valid option.\n");
+        }
+    }
+    roomInt[inputRm][6]=input1;
+    
     return 0;
 }
 
-
 int main()
 {
-    
     arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);
-    
     
     while(loop==1){
         switch(getIntInput("\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\nChoose an option:")){
             
             case 1:
-                roomSelect();
-                detailFill();
+                if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){
+                    roomSelect();
+                    detailFill();
                 
-                for(int i =0; i<10; i++){
-                    printf("%d ", roomInt[inputRm][i]);
-
+                    printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
+                    printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
                 }
+                else{
+                    printf("The hotel is currently full.\n");
+                }
+                break;
                 
-
-
+            case 2:
+                break;
+            
+            case 3:
+                break;
+            
+            case 4:
+                break;    
+                
+            default:
+                printf("Please enter a valid option.");
+                break;
+                
         }
     }   
-    
     return(0);
 } 
-    
-        
-    //printf("%d", roomInt[4][7]);
     
