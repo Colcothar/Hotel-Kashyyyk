@@ -185,7 +185,77 @@ int Total() {
 }
 
 
+int bill() {
+    int children = 0, over65s,  initial, onePerson, totalChild, totalRoom;
+    int totalBoard,totalCost, newspaperCost = 0;
 
+    int error=0,input1=1,input2;
+    printf("\n****Is the user over 65?****\n0 - Over 65.\n1 - Under 65.\n*******************\n");
+    while (error != 1 || input1<0 || input1>2) {
+        printf("Please enter if your over 65 or not?");
+        fflush(stdin);
+        error = scanf("%d", &input1);
+        if(error!=1){
+            printf("Input is not an integer! please try again.\n");
+        }
+        else if(input1<0 || input1>3 ){
+            printf("Please choose a valid option.\n");
+        }
+    }
+    ageInt[inputRm][1]=input1;
+
+//board cost calculator
+    error=0;
+    if (roomInt[inputRm][7] = "1"){
+        costInt[inputRm][1] = 20;
+    }
+    else if(roomInt[inputRm][7] = "2"){
+        roomInt[inputRm][1] = 15;
+    }
+    else if(roomInt[inputRm][7] = "3"){
+        costInt[inputRm][1] = 5;
+    }
+    else
+    {
+        //error
+    }
+
+    error=0;
+    // calculating the final room cost, including seperate discounts for children/over65s
+    onePerson = roomInt[inputRm][1] / roomInt[inputRm][2];
+    if(roomInt[inputRm][3] != 0 && ageInt[inputRm][1] != 0){
+        totalChild = ((onePerson * 0.5) * children) + (roomInt[inputRm][1] * (roomInt[inputRm][2] - children));
+        totalRoom = totalChild * 0.9;
+    }
+    else if(roomInt[inputRm][9] != 0 && roomInt[inputRm][3] == 0){
+        totalRoom = roomInt[inputRm][1] * 0.9;
+    }
+    else if(roomInt[inputRm][3] != 0 && roomInt[inputRm][9] == 0){
+        totalRoom = ((onePerson * 0.5) * children) + (roomInt[inputRm][1] * (roomInt[inputRm][2] - 1));
+    }
+    else {
+        totalRoom = roomInt[inputRm][1];
+    }
+
+    // calculating total board cost
+    totalBoard = roomInt[inputRm][5] * costInt[inputRm][1];
+    // calculating total cost of stay
+    totalCost = totalBoard + totalRoom;
+    if(roomInt[inputRm][6] != 0){
+        totalCost + 5.50;
+        newspaperCost = 5.50;
+    }
+
+    //outputting the user's bill
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nYour name: %s\nYour booking ID: %s%d\nPrice of room: %d\nPrice of board: %d", roomStr[inputRm][0], roomStr[inputRm][1],roomInt[inputRm][8], totalRoom, totalBoard);
+    //only printing newspaper if the cost is not zero
+    if(newspaperCost != 0){
+        printf("\nPrice of newspapers: %d", newspaperCost);
+    }
+    printf("\nOverall total: %d\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", totalCost);
+    /*OUTPUT: full name, bookingID, total room cost, total board cost, newspaper cost (if price>0), overall total*/
+    //return totalCost
+}
 
 
 int main()
@@ -283,10 +353,7 @@ int main()
                     if (LastDigits == roomInt[i][8]) {
 
                         if ((roomInt[1][0] + roomInt[2][0] + roomInt[3][0] + roomInt[4][0]) != 4) {
-                            totalCostOfRoom();
-                            totalCostOfBoard();
-                            newspaper();
-                            Total();
+                            bill();
                         }
                     } else {
                         printf("Your Booking ID doesn't show up.\n");
