@@ -345,13 +345,11 @@ int main()
                 scanf("%d", &LastDigits);
 
                 for (i = 1; i < 5; i++) {
-                    if (LastDigits == roomInt[i][8]) {
-
-                        if ((roomInt[1][0] + roomInt[2][0] + roomInt[3][0] + roomInt[4][0]) != 4) {
-                            bill();
-                        }
-                    } else {
-                        printf("Your Booking ID doesn't show up.\n");
+                    if (LastDigits == roomInt[i][8]) {     
+                       bill();                        
+                    } 
+		    else {
+                       printf("Your Booking ID doesn't show up.\n");
                     }
                     break;
                 }
