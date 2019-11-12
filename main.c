@@ -21,29 +21,29 @@ int roomState(array){//function to determin the state of a room. Takes int retur
     }
 }
 
-int getIntInput(print){
+int getIntInput(print){//function to take a positive integer input only 
     int error=0,input=1;
     while (error != 1 || input<0) {
         printf("%s", print);
         fflush(stdin);
         error = scanf("%d", &input);
-        if(error!=1){
+        if(error!=1){//tells the user if input isnt an integer
             printf("Input is not an integer! please try again.\n");
         }
-        else if(input<0){
+        else if(input<0){//tells the user if input is negative
             printf("Number is negative! Please try again.\n");
         }
     }
     return input;
 }
 
-int roomSelect(){
+int roomSelect(){//function to allow users to make a room selection
     int error=0;
-    inputRm=0;
-    while (error != 1 || inputRm<0 || inputRm>4 || roomInt[inputRm][0]==1) { //forces user to choose a real vacant room
+    inputRm=0;//resets back to zero
+    while (error != 1 || inputRm<0 || inputRm>4 || roomInt[inputRm][0]==1) { //forces user to choose a real vacant room. Loops if they fail to do so 
         printf("\n");
-        for(int i =1; i<5; i++){
-            printf("%d - Room%d costs £%d and is %s\n", i,i, roomInt[i][1], roomState(roomInt[i][0]));
+        for(int i =1; i<5; i++){//loops for the four rooms 
+            printf("%d - Room%d costs £%d and is %s\n", i,i, roomInt[i][1], roomState(roomInt[i][0]));//outputs room price, vancancy and room number
         }
         printf("Please select room number: ");
         fflush(stdin);
@@ -52,10 +52,10 @@ int roomSelect(){
         if(error!=1){
             printf("\nInput must be a room number. Please try again.\n");
         }
-        else if(inputRm<0 || inputRm>4){
+        else if(inputRm<0 || inputRm>4){//makes sure users input is between 1 and 4. Makes sure its an actual room
             printf("\nRoom number must be between 1 and 4. Please try again.\n");
         }
-        else if(roomInt[inputRm][0]==1){
+        else if(roomInt[inputRm][0]==1){//tells the user if the room isnt vacant
             printf("Room is not vacant. Please select a vacant room.");
         }
     }
@@ -66,25 +66,26 @@ int detailFill(){
     char buffer;
 
     srand(time(NULL));   // Initialization, should only be called once.
-    int r = rand()%999;      // Returns a pseudo-random integer between 0 and RAND_MAX.
+    int r = rand()%999;      // Returns a pseudo-random integer between 0 and 999.
+	int error=0,input1=1,input2;
 
     printf("\nEnter firstname : ");
     fflush(stdin);
-    scanf("%s", roomStr[inputRm][0]);    // Read and store
+    scanf("%s", roomStr[inputRm][0]);    // Read and store firstname
 
     printf("Enter surname: ");
     fflush(stdin);
-    scanf("%s",  roomStr[inputRm][1]);    // Read and store
+    scanf("%s",  roomStr[inputRm][1]);    // Read and store surname
 
     printf("Enter date of birth: ");
     fflush(stdin);
-    scanf("%s",  roomStr[inputRm][2]);    // Read and store
+    scanf("%s",  roomStr[inputRm][2]);    // Read and store date of birth
 
-    roomInt[inputRm][8] = (r+1000);
-    printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);
+    roomInt[inputRm][8] = (r+1000);//creates random booking id number, 4 digits 
+    printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id 
 
-    int error=0,input1=1,input2;
-    while (error != 2 || input1<0 || input2<0 || (input1+input2)>4) {
+    
+    while (error != 2 || input1<0 || input2<0 || (input1+input2)>4) {//forces user to input number of guests. There can only be a max of 4
         printf("Enter the number of adults and children seperated by commas (max of 4 total per room): ");
         fflush(stdin);
         error = scanf("%d,%d", &input1,&input2);
@@ -98,13 +99,13 @@ int detailFill(){
             printf("There is a max of 4 people per room. Please try again.");
         }
     }
-    roomInt[inputRm][2]=input1+input2;
-    roomInt[inputRm][4]=input1;
-    roomInt[inputRm][3]=input2;
+    roomInt[inputRm][2]=input1+input2;//stores total number of guests in the array 
+    roomInt[inputRm][4]=input1;//stores the number of adults in the array
+    roomInt[inputRm][3]=input2;//stores the number of children in the array 
 
-    error =0;
-    printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");
-    while (error != 1 || input1<0 || input1>3) {
+    error =0;//resets the error variable. Used to check if input is of correct type.
+    printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");//outputs board types
+    while (error != 1 || input1<0 || input1>3) {//forces the user to choose an existing board type
         printf("Enter your board type: ");
         fflush(stdin);
         error = scanf("%d", &input1);
@@ -116,9 +117,9 @@ int detailFill(){
         }
 
     }
-    roomInt[inputRm][7]=(input1-1);
+    roomInt[inputRm][7]=(input1-1);//stores the board type in the array 
 
-    error=0;
+    error=0;//resets the error variable. Used to check if input is of correct type.
     while (error != 1 || input1<0) {
         printf("Enter the length of your stay: ");
         fflush(stdin);
@@ -132,9 +133,9 @@ int detailFill(){
     }
     roomInt[inputRm][5]=input1;
 
-    error =0;
-    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");
-    while (error != 1 || input1<0 || input1>2) {
+    error =0;//resets the error variable. Used to check if input is of correct type.
+    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");//outputs newspaper options
+    while (error != 1 || input1<0 || input1>2) {//forces user to choose a newspaper option
         printf("Enter your newspaper choice: ");
         fflush(stdin);
         error = scanf("%d", &input1);
@@ -145,7 +146,7 @@ int detailFill(){
             printf("Please choose a valid option.\n");
         }
     }
-    roomInt[inputRm][6]=input1;
+    roomInt[inputRm][6]=input1;//stores the newspaper option to the array 
 
     return 0;
 }
@@ -261,20 +262,20 @@ int main()
     int Seven=0;
     int Nine=0;
     int y=0;int x=0;int i=0;
-    arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);
+    arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);//unused
 
     while(loop==1){
-        switch(getIntInput("\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\nChoose an option:")){
+        switch(getIntInput("\n*****Welcome to the Kashyyk Hotel*****\n\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\n*********************\nChoose an option:")){
 
             case 1:
-                if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){
-                    roomSelect();
-                    detailFill();
+                if((roomInt[1][0]+roomInt[2][0]+roomInt[3][0]+roomInt[4][0])!=4){//makes sure there is rooms free in the hotel 
+                    roomSelect();//calls the function to select a room 
+                    detailFill();//calls the function to fill the array with user details 
 
                     printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
                     printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
                 }
-                else{
+                else{//if there are no free rooms
                     printf("The hotel is currently full.\n");
                 }
                 break;
