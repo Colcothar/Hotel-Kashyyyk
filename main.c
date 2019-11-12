@@ -1,9 +1,3 @@
-/******************************************************************************
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-*******************************************************************************/
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -11,14 +5,14 @@ Code, Compile, Run and Debug online from anywhere in world.
 
 
 //**** GLOBAL VARIABLE DECLERATION ****
-int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
-char roomStr[5][4][100];
-int loop =1, arrayCollums=0;
-int inputRm=0, r=0;
+int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}}; //main array to store integer room info
+char roomStr[5][4][100];//main array to store room string info
+int loop =1, arrayCollums=0;//loop keeps the main program running, array collums is currently unused
+int inputRm=0, r=0;//input room is the room the user has currently selected
 
 //*************************************
 
-int roomState(array){
+int roomState(array){//function to determin the state of a room. Takes int returns string 
     if(array==0){
         return "vacant";
     }
