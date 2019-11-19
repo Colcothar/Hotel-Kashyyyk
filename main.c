@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -14,7 +15,7 @@ int inputRm=0, r=0;//input room is the room the user has currently selected
 
 //*************************************
 
-int roomState(array){//function to determin the state of a room. Takes int returns string
+const char* roomState(array){//function to determin the state of a room. Takes int returns string
     if(array==0){
         return "vacant";
     }
@@ -203,13 +204,13 @@ int bill() {
 
 //board cost calculator
     error=0;
-    if (roomInt[inputRm][7] = "1"){
+    if (roomInt[inputRm][7] == 1){
         costInt[inputRm][1] = 20;
     }
-    else if(roomInt[inputRm][7] = "2"){
+    else if(roomInt[inputRm][7] == 2){
         roomInt[inputRm][1] = 15;
     }
-    else if(roomInt[inputRm][7] = "3"){
+    else if(roomInt[inputRm][7] == 3){
         costInt[inputRm][1] = 5;
     }
     else
