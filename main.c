@@ -87,8 +87,8 @@ int detailFill(){
     
     sprintf(str, "%d", r);
     
-    strcpy(roomStr[inputRm][2], roomStr[inputRm][1]);
-    strcat(roomStr[inputRm][2], str);
+    strcpy(roomStr[inputRm][3], roomStr[inputRm][1]);
+    strcat(roomStr[inputRm][3], str);
     
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id 
 
