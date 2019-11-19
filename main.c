@@ -88,7 +88,7 @@ int detailFill(){
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id
 
 
-    while (error != 2 || input1<0 || input2<0 || (input1+input2)>4) {//forces user to input number of guests. There can only be a max of 4
+    while (error != 2 || input1<0 || input2<0 || (input1+input2)==0 || (input1+input2)>4) {//forces user to input number of guests. There can only be a max of 4
         printf("Enter the number of adults and children seperated by commas (max of 4 total per room): ");
         fflush(stdin);
         error = scanf("%d,%d", &input1,&input2);
@@ -255,7 +255,6 @@ int bill() {
     //return totalCost
 }
 
-
 int main()
 {
     int LastDigits=0;
@@ -277,8 +276,8 @@ int main()
                     roomSelect();//calls the function to select a room
                     detailFill();//calls the function to fill the array with user details
 
-                    printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
-                    printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
+                    //printf("vacancy: %d cost: %d guestNum: %d childrenNum: %d adultNum: %d length: %d newspaper: %d boardType: %d IDNumber: %d \n", roomInt[inputRm][0], roomInt[inputRm][1], roomInt[inputRm][2], roomInt[inputRm][3], roomInt[inputRm][4], roomInt[inputRm][5], roomInt[inputRm][6], roomInt[inputRm][7], roomInt[inputRm][8]);
+                    //printf("firstname: %s Surname: %s DOB: %s BookingID: %s%d", roomStr[inputRm][0],roomStr[inputRm][1],roomStr[inputRm][2],roomStr[inputRm][1],roomInt[inputRm][8]);
                 }
                 else{//if there are no free rooms
                     printf("The hotel is currently full.\n");
