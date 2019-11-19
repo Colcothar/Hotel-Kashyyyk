@@ -6,6 +6,8 @@
 
 //**** GLOBAL VARIABLE DECLERATION ****
 int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}}; //main array to store integer room info
+int ageInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
+int costInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
 char roomStr[5][4][100];//main array to store room string info
 int loop =1, arrayCollums=0;//loop keeps the main program running, array collums is currently unused
 int inputRm=0, r=0;//input room is the room the user has currently selected
