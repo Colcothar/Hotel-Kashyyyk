@@ -134,14 +134,14 @@ int detailFill(){
     roomInt[inputRm][7]=(input1-1);//stores the board type in the array
 
     error=0;//resets the error variable. Used to check if input is of correct type.
-    while (error != 1 || input1<0) {
+    while (error != 1 || input1<1) {
         printf("Enter the length of your stay: ");
         fflush(stdin);
         error = scanf("%d", &input1);
         if(error!=1){
             printf("Input is not an integer! please try again.\n");
         }
-        else if(input1<0 ){
+        else if(input1<1 ){
             printf("Number is negative! Please try again.\n");
         }
     }
