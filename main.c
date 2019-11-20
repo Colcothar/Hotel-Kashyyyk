@@ -149,14 +149,14 @@ int detailFill(){
 
     error =0;//resets the error variable. Used to check if input is of correct type.
     printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");//outputs newspaper options
-    while (error != 1 || input1<0 || input1>2) {//forces user to choose a newspaper option
+    while (error != 1 || input1<0 || input1>1) {//forces user to choose a newspaper option
         printf("Enter your newspaper choice: ");
         fflush(stdin);
         error = scanf("%d", &input1);
         if(error!=1){
             printf("Input is not an integer! please try again.\n");
         }
-        else if(input1<0 || input1>3 ){
+        else if(input1<0 || input1>1 ){
             printf("Please choose a valid option.\n");
         }
     }
