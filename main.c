@@ -46,7 +46,7 @@ int getIntInput(print){//function to take a positive integer input only
 int roomSelect(){//function to allow users to make a room selection
     int error=0;
     inputRm=0;//resets back to zero
-    while (error != 1 || inputRm<0 || inputRm>4 || roomInt[inputRm][0]==1) { //forces user to choose a real vacant room. Loops if they fail to do so
+    while (error != 1 || inputRm<1 || inputRm>4 || roomInt[inputRm][0]==1) { //forces user to choose a real vacant room. Loops if they fail to do so
         printf("\n");
         for(int i =1; i<5; i++){//loops for the four rooms
             printf("%d - Room%d costs £%d and is %s\n", i,i, roomInt[i][1], roomState(roomInt[i][0]));//outputs room price, vancancy and room number
