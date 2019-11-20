@@ -95,6 +95,7 @@ int detailFill(){
     strcat(roomStr[inputRm][3], str);
 
     roomInt[inputRm][8] = r;//creates random booking id number, 4 digits
+    roomInt[inputRm][8] = r;//creates random booking id number, 4 digits
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id
 
 
@@ -108,8 +109,8 @@ int detailFill(){
         else if(input1<0 || input2<0){
             printf("Number is negative! Please try again.\n");
         }
-        else if(input1+input2>4){
-            printf("There is a max of 4 people per room. Please try again.");
+        else if(input1+input2>4 || (input1+input2)==0){
+            printf("There is a max of 4 people per room and a min of 1. Please try again.");
         }
     }
     roomInt[inputRm][2]=input1+input2;//stores total number of guests in the array
@@ -304,7 +305,10 @@ int main()
                 printf("\nEnter the booking ID:\n");
                 scanf("%s", &LastDigits);
 
+                
+    
                 for(i=1;i<5;i++){
+                    printf("%s %s %d",LastDigits,roomStr[i][3],strcmp(LastDigits,roomStr[i][3]));
                     if(strcmp(LastDigits,roomStr[i][3])==0){            /*Checks if the booking ID is assioated with a room*/
 
                         if(roomInt[i][7] == 0 || roomInt[i][7] == 1){    /*Checks if the user is full or half board*/
