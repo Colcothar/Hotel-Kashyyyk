@@ -95,7 +95,6 @@ int detailFill(){
     strcat(roomStr[inputRm][3], str);
 
     roomInt[inputRm][8] = r;//creates random booking id number, 4 digits
-    roomInt[inputRm][8] = (r+1000);//creates random booking id number, 4 digits
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id
 
 
