@@ -119,7 +119,7 @@ int detailFill(){
 
     error =0;//resets the error variable. Used to check if input is of correct type.
     printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");//outputs board types
-    while (error != 1 || input1<0 || input1>3) {//forces the user to choose an existing board type
+    while (error != 1 || input1<1 || input1>3) {//forces the user to choose an existing board type
         printf("Enter your board type: ");
         fflush(stdin);
         error = scanf("%d", &input1);
