@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+
 #include <string.h>
+
 
 
 //**** GLOBAL VARIABLE DECLERATION ****
@@ -10,6 +12,7 @@ int roomInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0
 int ageInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
 int costInt[5][9]={ {0,0,0,0,0,0,0,0,0} , {0,100,0,0,0,0,0,0,0}, {0,85,0,0,0,0,0,0,0}, {1,75,0,0,0,0,0,0,0},{1,50,4,3,1,3,1,2,0}};
 char roomStr[5][5][100];//main array to store room string info
+
 int loop =1, arrayCollums=0;//loop keeps the main program running, array collums is currently unused
 int inputRm=0, r=0;//input room is the room the user has currently selected
 
@@ -71,6 +74,7 @@ int detailFill(){
 
     srand(time(NULL));   // Initialization, should only be called once.
     int r = 1000+(rand()%999);      // Returns a pseudo-random integer between 0 and 999.
+
     int error=0,input1=1,input2;
 
     printf("\nEnter firstname : ");
@@ -91,6 +95,7 @@ int detailFill(){
     strcat(roomStr[inputRm][3], str);
 
     roomInt[inputRm][8] = r;//creates random booking id number, 4 digits
+    roomInt[inputRm][8] = (r+1000);//creates random booking id number, 4 digits
     printf("Booking ID: %s%d\n", roomStr[inputRm][1],roomInt[inputRm][8]);//outputs booking id
 
 
@@ -264,6 +269,7 @@ int bill() {
 int main()
 {
     char LastDigits[256];
+
     int TablesAvailable[2][5]= {{0,0,0,0},{0,0,0,0}};
     int TimeIndex=0;
     int ChoosenTime=0;
@@ -273,7 +279,10 @@ int main()
     arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);//unused
 
     while(loop==1){
+
         switch(getIntInput("\n*****Welcome to the Kashyyk Hotel*****\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\n*********************\nChoose an option:")){
+
+
 
             case 1:
 
@@ -297,7 +306,6 @@ int main()
                 scanf("%s", &LastDigits);
 
                 for(i=1;i<5;i++){
-
                     if(strcmp(LastDigits,roomStr[i][3])==0){            /*Checks if the booking ID is assioated with a room*/
 
                         if(roomInt[i][7] == 0 || roomInt[i][7] == 1){    /*Checks if the user is full or half board*/
@@ -344,7 +352,9 @@ int main()
                     }
                     else{
                         printf("Sorry, we couldn't find your booking ID");}     /*Printed if the booking isn't recognised*/
+
                     break;
+
                 }
 
 
@@ -358,6 +368,7 @@ int main()
 
                 for (i = 1; i < 5; i++) {
                     if (strcmp(LastDigits,roomStr[i][3])==0) {
+
                         bill();
                     }
                     else {

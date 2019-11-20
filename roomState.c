@@ -2,7 +2,7 @@
 
 int roomState(array){
     if(array==0){
-        return "empty";
+        return "vacant";
     }
     else{
         return "taken";
