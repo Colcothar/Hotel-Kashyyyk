@@ -84,7 +84,7 @@ int detailFill(){
     fflush(stdin);
     scanf("%s",  roomStr[inputRm][1]);    // Read and store surname
 
-    printf("Enter date of birth: ");
+    printf("Enter date of birth in the format DD/MM/YYYY: ");
     fflush(stdin);
     scanf("%s",  roomStr[inputRm][2]);    // Read and store date of birth
 
@@ -277,6 +277,8 @@ int main()
     int y=0;int x=0;int i=0;
     arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);//unused
 
+    printf("NOTE: If a decimal is entered, everything after the decimal point will be ignored!")
+    
     while(loop==1){
 
         switch(getIntInput("\n*****Welcome to the Kashyyk Hotel*****\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\n*********************\nChoose an option:")){
