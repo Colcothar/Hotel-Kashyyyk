@@ -125,7 +125,7 @@ int detailFill(){
         if(error!=1){
             printf("Input is not an integer! please try again.\n");
         }
-        else if(input1<0 || input1>3 ){
+        else if(input1<1 || input1>3 ){
             printf("Please choose a valid option.\n");
         }
 
