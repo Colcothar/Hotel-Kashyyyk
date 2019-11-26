@@ -117,7 +117,7 @@ int detailFill(){
     roomInt[inputRm][3]=input2;//stores the number of children in the array
 
     error =0;//resets the error variable. Used to check if input is of correct type.
-    printf("\n****Board Types****\n1 - Full Board\n2 - Half Board\n3 - B&B\n*******************\n");//outputs board types
+    printf("\n****Board Types****\n1 - Full Board - \x9c20 \n2 - Half Board - \x9c15 \n3 - B&B - \x9c5 \n*******************\n");//outputs board types
     while (error != 1 || input1<1 || input1>3) {//forces the user to choose an existing board type
         printf("Enter your board type: ");
         fflush(stdin);
@@ -147,7 +147,7 @@ int detailFill(){
     roomInt[inputRm][5]=input1;
 
     error =0;//resets the error variable. Used to check if input is of correct type.
-    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper\n*******************\n");//outputs newspaper options
+    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper - \x9c5.50 \n*******************\n");//outputs newspaper options
     while (error != 1 || input1<0 || input1>1) {//forces user to choose a newspaper option
         printf("Enter your newspaper choice: ");
         fflush(stdin);
