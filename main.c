@@ -147,7 +147,7 @@ int detailFill(){
     roomInt[inputRm][5]=input1;
 
     error =0;//resets the error variable. Used to check if input is of correct type.
-    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper - \x9c5.50 \n*******************\n");//outputs newspaper options
+    printf("\n****Newspaper****\n0 - No Daily Newspaper\n1 - Daily Newspaper - \x9c 5.50 \n*******************\n");//outputs newspaper options
     while (error != 1 || input1<0 || input1>1) {//forces user to choose a newspaper option
         printf("Enter your newspaper choice: ");
         fflush(stdin);
