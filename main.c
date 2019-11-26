@@ -333,7 +333,8 @@ int main()
                             else if(ChoosenTime == 9){
                                 TimeIndex = 1;}
                             else{
-                                printf("Invalid time");}
+                                printf("Invalid time");
+                                break;}
 
                             if(TablesAvailable[TimeIndex][0] == 0){
                                 printf("You have booked the table Endor for %dpm for %d people",ChoosenTime, roomInt[i][2]);
