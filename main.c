@@ -57,7 +57,7 @@ int roomSelect(){//function to allow users to make a room selection
         if(error!=1){
             printf("\nInput must be a room number. Please try again.\n");
         }
-        else if(inputRm<0 || inputRm>4){//makes sure users input is between 1 and 4. Makes sure its an actual room
+        else if(inputRm<1 || inputRm>4){//makes sure users input is between 1 and 4. Makes sure its an actual room
             printf("\nRoom number must be between 1 and 4. Please try again.\n");
         }
         else if(roomInt[inputRm][0]==1){//tells the user if the room isnt vacant
