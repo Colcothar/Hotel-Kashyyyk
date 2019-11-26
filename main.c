@@ -309,12 +309,10 @@ int main()
 
 
                 for(i=1;i<5;i++){
-                    printf("%s %s %d",LastDigits,roomStr[i][3],strcmp(LastDigits,roomStr[i][3]));
+                    
                     if(strcmp(LastDigits,roomStr[i][3])==0){            /*Checks if the booking ID is assioated with a room*/
 
                         if(roomInt[i][7] == 0 || roomInt[i][7] == 1){    /*Checks if the user is full or half board*/
-
-                            printf("Hello %s %s\n",roomStr[i][0],roomStr[i][1]);
 
                             for(y=0;y<1;y++){
                                 for(x=0;x<3;x++){
