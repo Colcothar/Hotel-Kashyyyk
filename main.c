@@ -350,11 +350,10 @@ int main()
                                 printf("You have booked the table Tatoonie for %dpm for %d people",ChoosenTime, roomInt[i][2]);
                                 TablesAvailable[TimeIndex][2] = 1;}
                         }
-                        else{
-                            printf("Sorry, you aren't booked as half or full board");}         /*Printed if the person is B&B*/
+                        
                     }
                     else{
-                        printf("Sorry, we couldn't find your booking ID");}     /*Printed if the booking isn't recognised*/
+                        printf("Sorry, we couldn't find your booking ID or you weren't booked in as FB or HB");}     /*Printed if the booking isn't recognised*/
 
                     break;
 
