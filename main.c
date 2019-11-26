@@ -117,7 +117,7 @@ int detailFill(){
     roomInt[inputRm][3]=input2;//stores the number of children in the array
 
     error =0;//resets the error variable. Used to check if input is of correct type.
-    printf("\n****Board Types****\n1 - Full Board - \x9c20 \n2 - Half Board - \x9c15 \n3 - B&B - \x9c5 \n*******************\n");//outputs board types
+    printf("\n****Board Types****\n1 - Full Board - \x9c 20 \n2 - Half Board - \x9c 15 \n3 - B&B - \x9c 5 \n*******************\n");//outputs board types
     while (error != 1 || input1<1 || input1>3) {//forces the user to choose an existing board type
         printf("Enter your board type: ");
         fflush(stdin);
@@ -277,8 +277,8 @@ int main()
     int y=0;int x=0;int i=0;
     arrayCollums = sizeof(roomInt)/sizeof(roomInt[0]);//unused
 
-    printf("NOTE: If a decimal is entered, everything after the decimal point will be ignored!")
-    
+    printf("NOTE: If a decimal is entered, everything after the decimal point will be ignored!");
+
     while(loop==1){
 
         switch(getIntInput("\n*****Welcome to the Kashyyk Hotel*****\n1 - Check In\n2 - Book a Dinner Table\n3 - Check Out\n4 - Quit\n*********************\nChoose an option:")){
@@ -306,8 +306,8 @@ int main()
                 printf("\nEnter the booking ID:\n");
                 scanf("%s", &LastDigits);
 
-                
-    
+
+
                 for(i=1;i<5;i++){
                     printf("%s %s %d",LastDigits,roomStr[i][3],strcmp(LastDigits,roomStr[i][3]));
                     if(strcmp(LastDigits,roomStr[i][3])==0){            /*Checks if the booking ID is assioated with a room*/
